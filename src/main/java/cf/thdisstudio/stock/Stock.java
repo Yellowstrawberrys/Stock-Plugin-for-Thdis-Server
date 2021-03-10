@@ -105,11 +105,11 @@ public final class Stock extends JavaPlugin implements Listener {
     @EventHandler
     public void event(InventoryClickEvent e){
         if(e.getInventory().equals(inv)){
-            e.setCancelled(true);
             if(e.getClick().isLeftClick()){
                 e.setCancelled(true);
-                if(e.getRawSlot() == 10){
-                    if(econ.getBalance(e.getWhoClicked().getName()) == Double.valueOf(p1.thdisstudio) || econ.getBalance(e.getWhoClicked().getName()) >= Double.valueOf(p1.thdisstudio)){
+                if(e.getSlot() == 10){
+                    e.getWhoClicked().sendMessage(String.valueOf(p1.thdisstudio));
+                    if(econ.has(e.getWhoClicked().getName(),Double.valueOf(p1.thdisstudio))){
                         LocalDateTime myDateObj = LocalDateTime.now();
                         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM월dd일, HH시mm분ss초");
                         String formattedDate = myDateObj.format(myFormatObj);
@@ -125,8 +125,8 @@ public final class Stock extends JavaPlugin implements Listener {
                     }else{
                         e.getWhoClicked().sendMessage("스디스 스튜디오 주식을 살 돈이 없습니다");
                     }
-                }else if(e.getRawSlot() == 11){
-                    if(econ.getBalance(e.getWhoClicked().getName()) == Double.valueOf(p1.yalmefarm) || econ.getBalance(e.getWhoClicked().getName()) >= Double.valueOf(p1.yalmefarm)){
+                }else if(e.getSlot() == 11){
+                    if(econ.has(e.getWhoClicked().getName(),Double.valueOf(p1.yalmefarm))){
                         LocalDateTime myDateObj = LocalDateTime.now();
                         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM월dd일, HH시mm분ss초");
                         ItemStack stk = new ItemStack(Material.PAPER);
@@ -142,8 +142,8 @@ public final class Stock extends JavaPlugin implements Listener {
                     }else{
                         e.getWhoClicked().sendMessage("열매 농장 주식을 살 돈이 없습니다");
                     }
-                }else if(e.getRawSlot() == 12){
-                    if(econ.getBalance(e.getWhoClicked().getName()) == Double.valueOf(p1.yalmefarm) || econ.getBalance(e.getWhoClicked().getName()) >= Double.valueOf(p1.minecraft)){
+                }else if(e.getSlot() == 12){
+                    if(econ.has(e.getWhoClicked().getName(),Double.valueOf(p1.minecraft))){
                         LocalDateTime myDateObj = LocalDateTime.now();
                         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM월dd일, HH시mm분ss초");
                         ItemStack stk = new ItemStack(Material.PAPER);
@@ -183,6 +183,7 @@ public final class Stock extends JavaPlugin implements Listener {
                 }
                 e.setCancelled(true);
             }
+            e.setCancelled(true);
         }else{
             return;
         }
