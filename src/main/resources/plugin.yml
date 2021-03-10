@@ -1,0 +1,11 @@
+name: Stock
+version: 1.0
+main: cf.thdisstudio.stock.Stock
+api-version: 1.16
+authors: [ Thdis_Studio, Yellowstrawberry ]
+description: stock
+website: thdisstudio.cf
+softdepend: [Vault]
+commands:
+  stock:
+    description: Stock
